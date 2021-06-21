@@ -1,9 +1,8 @@
-<div style="text-align: center">
-  <h1>Welcome to cart!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-    alt="Nx - Smart, Extensible Build Framework"
-  />
-</div>
-<div>Message: {{ hello$ | async | json }}</div>
+<nav class='main-nav'>
+  <a class='main-nav-link' routerLink='/'>Home</a>
+  <a class='main-nav-link' routerLink='catalog'>Catalog</a>
+  <a class='main-nav-link' routerLink='cart'>Cart</a>
+  <a class='main-nav-link' routerLink='unknown/path'>404</a>
+</nav>
+
+<router-outlet></router-outlet>

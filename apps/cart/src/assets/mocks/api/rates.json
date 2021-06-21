@@ -1,0 +1,40 @@
+{
+  "success": true,
+  "infos": {
+    "date": "1992-05-05",
+    "timestamp": "2021-06-22T03:11:21Z",
+    "expire": "2021-06-22T03:12:21Z",
+    "from": "USD",
+    "converted": false,
+    "source": {
+      "id": "apiforex",
+      "name": "Api Forex",
+      "base_currency": "USD",
+      "country": "World"
+    },
+    "terms": {
+      "privacy": "https://api.forex/privacy",
+      "legacy": "https://api.forex/terms"
+    },
+    "usage": {
+      "api_count": 14,
+      "pack": "Gold"
+    }
+  },
+  "rates": {
+    "ATS": 2.5,
+    "BEF": 0.8568,
+    "DEM": 17.63,
+    "ESP": 0.2809,
+    "FIM": 6.49,
+    "FRF": 5.23,
+    "GRD": 0.1502,
+    "IEP": 47.04,
+    "ITL": 0.02347,
+    "LUF": 0.8568,
+    "NLG": 15.66,
+    "PTE": 0.2098,
+    "XDR": 39.91,
+    "XEU": 36.2
+  }
+}

@@ -31,6 +31,18 @@
     "cart-e2e": {
       "tags": [],
       "implicitDependencies": ["cart"]
+    },
+    "page-cart": {
+      "tags": []
+    },
+    "page-catalog": {
+      "tags": []
+    },
+    "page-not-found": {
+      "tags": []
+    },
+    "shop": {
+      "tags": []
     }
   }
 }

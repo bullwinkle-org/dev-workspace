@@ -182,6 +182,106 @@
           }
         }
       }
+    },
+    "page-cart": {
+      "projectType": "library",
+      "root": "libs/page-cart",
+      "sourceRoot": "libs/page-cart/src",
+      "prefix": "dev-workspace",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/page-cart"],
+          "options": {
+            "jestConfig": "libs/page-cart/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/page-cart/src/**/*.ts",
+              "libs/page-cart/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "page-catalog": {
+      "projectType": "library",
+      "root": "libs/page-catalog",
+      "sourceRoot": "libs/page-catalog/src",
+      "prefix": "dev-workspace",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/page-catalog"],
+          "options": {
+            "jestConfig": "libs/page-catalog/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/page-catalog/src/**/*.ts",
+              "libs/page-catalog/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "page-not-found": {
+      "projectType": "library",
+      "root": "libs/page-not-found",
+      "sourceRoot": "libs/page-not-found/src",
+      "prefix": "dev-workspace",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/page-not-found"],
+          "options": {
+            "jestConfig": "libs/page-not-found/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/page-not-found/src/**/*.ts",
+              "libs/page-not-found/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "shop": {
+      "projectType": "library",
+      "root": "libs/shop",
+      "sourceRoot": "libs/shop/src",
+      "prefix": "dev-workspace",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shop"],
+          "options": {
+            "jestConfig": "libs/shop/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shop/src/**/*.ts",
+              "libs/shop/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

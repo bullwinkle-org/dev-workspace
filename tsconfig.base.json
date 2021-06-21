@@ -15,7 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dev-workspace/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@dev-workspace/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@dev-workspace/page-cart": ["libs/page-cart/src/index.ts"],
+      "@dev-workspace/page-catalog": ["libs/page-catalog/src/index.ts"],
+      "@dev-workspace/page-not-found": ["libs/page-not-found/src/index.ts"],
+      "@dev-workspace/shop": ["libs/shop/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
