@@ -1,11 +1,8 @@
-<div>cart total: {{ shopState.cartTotal$ | async }}</div>
+<pre>cart total: {{ shopState.cartTotal$ | async | json }}</pre>
 
 <ng-container *ngIf='shopState.state$ | async as state'>
-  <select name='currency' #currencySelect (change)='onCurrencyChange(currencySelect.value)' value='USD'>
-    <option *ngFor='let option of state.availableCurrencies' [value]='option'>{{option}}</option>
-  </select>
-
-  <dev-workspace-product-item *ngFor='let item of state.cartItems' [item]='item'></dev-workspace-product-item>
-
-  <pre>{{ state | json }}</pre>
+  <div *ngFor='let item of state.cartItems'>
+    <dev-workspace-product-item [item]='item'></dev-workspace-product-item>
+    <button (click)='onRemoveItemClick(item)'>Remove from cart</button>
+  </div>
 </ng-container>

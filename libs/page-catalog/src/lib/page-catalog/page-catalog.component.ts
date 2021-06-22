@@ -1,4 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ShopStateService } from '@dev-workspace/shop';
+import { Product } from '@dev-workspace/api-interfaces';
 
 @Component({
   selector: 'dev-workspace-page-catalog',
@@ -6,11 +8,13 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./page-catalog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageCatalogComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class PageCatalogComponent {
+  constructor(public shopState: ShopStateService) {
   }
 
+  onAddItemClick(item: Product) {
+    this.shopState.patch({
+      cartItems: [...this.shopState.cartItems, item]
+    });
+  }
 }

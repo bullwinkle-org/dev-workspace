@@ -1,1 +1,6 @@
-<p>page-catalog works!</p>
+<ng-container *ngIf='shopState.state$ | async as state'>
+  <div *ngFor='let item of state.products'>
+    <dev-workspace-product-item [item]='item'></dev-workspace-product-item>
+    <button (click)='onAddItemClick(item)'>Add to cart</button>
+  </div>
+</ng-container>

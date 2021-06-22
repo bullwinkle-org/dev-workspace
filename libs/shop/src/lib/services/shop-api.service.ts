@@ -26,12 +26,6 @@ export class ShopApiService {
     });
   }
 
-  getUsers() {
-    return this.http.get('/assets/mocks/api/users.json', {
-      withCredentials: true
-    });
-  }
-
   constructor(private http: HttpClient) {
     console.warn('hi shop service');
   }

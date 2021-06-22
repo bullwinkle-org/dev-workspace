@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Message } from '@dev-workspace/api-interfaces';
+import { AvailableCurrency, ShopStateService } from '../../../../libs/shop/src/lib/services/shop-state.service';
 
 @Component({
   selector: 'dev-workspace-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
-  constructor(private http: HttpClient) {}
+  constructor(
+    public shopState: ShopStateService
+  ) {
+  }
+
+  onCurrencyChange(currency: string) {
+    this.shopState.patch({ currency: currency as AvailableCurrency });
+  }
 }

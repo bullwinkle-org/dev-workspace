@@ -4,15 +4,20 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ShopApiService } from './shop-api.service';
 import { map } from 'rxjs/operators';
 
+export type AvailableCurrency = 'RUB' | 'EUR' | 'USD' | 'GBP' | 'JPY';
+export type CartTotals = Record<AvailableCurrency, number>;
+
 interface ShopState {
+  products: Product[];
   cartItems: Product[];
-  currency: string;
+  currency: AvailableCurrency;
   currencies: Currency[];
   currenciesRates: CurrenciesRates;
-  availableCurrencies: string[];
+  availableCurrencies: AvailableCurrency[];
 }
 
 const shopStateDefault: ShopState = {
+  products: [],
   cartItems: [],
   currencies: [],
   currenciesRates: {},
@@ -20,12 +25,13 @@ const shopStateDefault: ShopState = {
   availableCurrencies: ['RUB', 'EUR', 'USD', 'GBP', 'JPY']
 };
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class ShopStateService {
   public state$: Observable<ShopState>;
-  public cartTotal$: Observable<number>;
+  public cartTotal$: Observable<CartTotals>;
 
   get cartItems(): Product[] {
     return this.value.cartItems;
@@ -52,9 +58,14 @@ export class ShopStateService {
   constructor(private shopApiService: ShopApiService) {
     this.state$ = this.stateSubject$.asObservable();
     this.cartTotal$ = this.state$.pipe(
-      map(({ cartItems }) =>
-        cartItems.reduce((sum, { price }) => (sum + price), 0)
-      )
+      map(({
+             cartItems,
+             availableCurrencies,
+             currenciesRates
+           }) => availableCurrencies.reduce((totals, currencyKey) => ({
+        ...totals,
+        [currencyKey]: +cartItems.reduce((sum, {price}) => (sum + (price * (currenciesRates[currencyKey]?? 0.5))), 0).toFixed(2)
+      }), {} as CartTotals))
     );
 
     this.shopApiService.getCurrenciesRates().subscribe(
@@ -86,23 +97,11 @@ export class ShopStateService {
     );
 
     this.shopApiService.getProducts().subscribe(
-      (cartItems) => {
-        console.warn('next', cartItems);
+      (products) => {
+        console.warn('next', products);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        this.patch({ cartItems });
-      },
-      (a) => {
-        console.warn('error', a);
-      },
-      () => {
-        console.warn('complete');
-      }
-    );
-
-    this.shopApiService.getUsers().subscribe(
-      (a) => {
-        console.warn('next', a);
+        this.patch({ products });
       },
       (a) => {
         console.warn('error', a);
@@ -113,7 +112,7 @@ export class ShopStateService {
     );
   }
 
-  private patch(data: Partial<ShopState>) {
+  public patch(data: Partial<ShopState>) {
     this.stateSubject$.next({ ...this.value, ...data });
   }
 }

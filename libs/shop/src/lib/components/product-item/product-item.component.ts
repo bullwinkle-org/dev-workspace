@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '@dev-workspace/api-interfaces';
 
 @Component({
@@ -7,13 +7,7 @@ import { Product } from '@dev-workspace/api-interfaces';
   styleUrls: ['./product-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductItemComponent implements OnInit {
+export class ProductItemComponent {
   @Input() item?: Product = undefined;
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
+  @Output() addToCartClick: EventEmitter<Product> = new EventEmitter<Product>();
 }
